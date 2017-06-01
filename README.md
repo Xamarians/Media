@@ -27,7 +27,8 @@ string filePath = GenerateFilePath();
                 MaxWidth = 300,
                 MaxHeight = 300
             });
-			
+		
+```
 Photo Picker:- 
  
 ```c#
