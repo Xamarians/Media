@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarians.Media</id>
+    <version>1.0.0</version>
+   <authors>Xamarians</authors>
+    <owners>Xamarians</owners>
+    <licenseUrl>https://github.com/Xamarians/Media/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Xamarians/Media</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Cross platform library to click pictures using camera, pick media files(photo, video and audio) from gallery</description>
+    <releaseNotes>Initial Commit</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>pick photos pick videos pic audio audio picker video picker photo picker click photo capture photo use camera pick from gallery upload audio file upload photo upload video</tags>
+	</metadata>
+     <files>
+    <!--Core-->
+    <file src="..\Xamarians.Media\bin\Debug\Xamarians.Media.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Xamarians.Media.dll" />
+    <file src="..\Xamarians.Media\bin\Debug\Xamarians.Media.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Xamarians.Media.pdb" />
+
+    <!--Xamarin.Android-->
+    <file src="..\Xamarians.Media.Droid\bin\Debug\Xamarians.Media.dll" target="lib\MonoAndroid10\Xamarians.Media.dll" />
+    <file src="..\Xamarians.Media.Droid\bin\Debug\Xamarians.Media.pdb" target="lib\MonoAndroid10\Xamarians.Media.xml" />
+    <file src="..\Xamarians.Media.Droid\bin\Debug\Xamarians.Media.Droid.dll" target="lib\MonoAndroid10\Xamarians.Media.Droid.dll" />
+    <file src="..\Xamarians.Media.Droid\bin\Debug\Xamarians.Media.Droid.pdb" target="lib\MonoAndroid10\Xamarians.Media.Droid.pdb" />
+   
+    <!--Xamarin.iOS-->
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.dll" target="lib\MonoTouch10\Xamarians.Media.dll" />
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.pdb" target="lib\MonoTouch10\Xamarians.Media.xml" />
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.iOS.dll" target="lib\MonoTouch10\Xamarians.Media.iOS.dll" />
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.iOS.pdb" target="lib\MonoTouch10\Xamarians.Media.iOS.pdb" />
+  
+
+    <!--Xamarin.iOS Unified-->
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.dll" target="lib\Xamarin.iOS10\Xamarians.Media.dll" />
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.pdb" target="lib\Xamarin.iOS10\Xamarians.Media.xml" />
+    <file src="..\Xamarians.Media.iOS\bin\Debug\Xamarians.Media.iOS.dll" target="lib\Xamarin.iOS10\Xamarians.Media.iOS.dll" />
+	</files>
+  </package>
