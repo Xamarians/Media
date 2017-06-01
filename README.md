@@ -38,6 +38,7 @@ using Xamarians.Media;
 
 var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Image);
 
+```
 Video Picker:- 
  
 ```c#
@@ -47,6 +48,7 @@ using Xamarians.Media;
 
  var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Video);
  
+```
 Audio Picker:-
 
 ```c#
@@ -55,7 +57,8 @@ using Xamarians.Media;
 ...
 
  var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Audio);
- 
+
+```
  Resize Image:-
  
  ```c#
@@ -71,7 +74,7 @@ private string GenerateFilePath()
             string resizeFilePath = GenerateFilePath();
             var success = await MediaService.Instance.ResizeImageAsync(result.FilePath, resizeFilePath, 250, 250);
 
-
+```
 Android - in MainActivity file write below code -
 ```c#
  Xamarians.Media.Droid.MediaServiceAndroid.Initialize();
