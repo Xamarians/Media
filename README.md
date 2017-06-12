@@ -85,10 +85,12 @@ iOS - in AppDelegate file write below code -
 Xamarians.Media.iOS.MediaServiceIOS.Initialize();
 ```
 The following permissions are needed in iOS -
+```
 NSCameraUsageDescription	
 NSPhotoLibraryUsageDescription
 NSMicrophoneUsageDescription
 TCCServiceMediaLibrary
 NSAppleMusicUsageDescription
+```
 	
 
