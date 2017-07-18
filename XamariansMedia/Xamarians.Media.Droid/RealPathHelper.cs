@@ -66,7 +66,7 @@ namespace Xamarians.Media.Droid
                     {
                         contentUri = MediaStore.Audio.Media.ExternalContentUri;
                     }
-
+                  
                     string selection = "_id=?";
                     string[] selectionArgs = new string[] { split[1] };
 
@@ -80,12 +80,17 @@ namespace Xamarians.Media.Droid
                 // Return the remote address
                 if (IsGooglePhotosUri(uri))
                     return uri.LastPathSegment;
+                if (IsGoogleDocUri(uri))
+                    return uri.LastPathSegment;
 
                 return GetDataColumn(context, uri, null, null);
             }
             // File
             else if ("file".Equals(uri.Scheme, System.StringComparison.OrdinalIgnoreCase))
             {
+
+                if (IsGoogleDocUri(uri))
+                    return uri.LastPathSegment;
                 return uri.Path;
             }
 
@@ -160,6 +165,11 @@ namespace Xamarians.Media.Droid
          * @param uri The Uri to check.
          * @return Whether the Uri authority is Google Photos.
          */
+
+        public static bool IsGoogleDocUri(Android.Net.Uri uri)
+        {
+            return "com.google.android.apps.docs.storage".Equals(uri.Authority);
+        }
         public static bool IsGooglePhotosUri(Android.Net.Uri uri)
         {
             return "com.google.android.apps.photos.content".Equals(uri.Authority);

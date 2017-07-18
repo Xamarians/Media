@@ -95,10 +95,9 @@ namespace Xamarians.Media.Droid
             StartActivityForResult(Intent.CreateChooser(intent, title), RequestCodeGallery);
         }
 
-
         public void OpenDocPicker()
         {
-            var intent = new Intent(Intent.ActionOpenDocument);
+            var intent = new Intent(Intent.ActionGetContent);
             intent.AddCategory(Intent.CategoryOpenable);
             intent.SetType("*/*");
 
