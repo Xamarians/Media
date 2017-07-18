@@ -24,10 +24,11 @@ namespace Xamarians.Media.iOS
 
         #region Private Methods
 
+
         private static UIViewController GetController()
         {
             var vc = UIApplication.SharedApplication.KeyWindow.RootViewController;
-            while (vc.PresentedViewController != null)
+            while (vc.PresentedViewController != null && vc.PresentedViewController.ToString().Contains("Xamarin_Forms_Platform_iOS_ModalWrapper"))
                 vc = vc.PresentedViewController;
             return vc;
         }
@@ -104,33 +105,33 @@ namespace Xamarians.Media.iOS
                             task.SetResult(new MediaResult(false) { Message = "Cancelled." });
                             return;
                         }
-						try
-						{
-							var photoUrl = nsdict.ValueForKey(new NSString("UIImagePickerControllerReferenceURL")) as NSUrl;
-							var imageName = photoUrl.LastPathComponent;
-							var dir = NSSearchPath.GetDirectories(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User, true).FirstOrDefault();
-							var picUrl = new NSUrl(dir, true);
-							var localPath = picUrl.Append(imageName, false);
-							var localPath1 = picUrl.Append(imageName, true);
-							//task.SetResult(new MediaResult(true) { FilePath = localPath.ToString()});
-							var photo = nsdict.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
-							if (photo != null)
-							{
-								string fileName = System.IO.Path.Combine(GetPublicDirectoryPath(), imageName);
-								NSError err = null;
-								if (photo.AsJPEG().Save(fileName, false, out err))
-								{
-									task.SetResult(new MediaResult(true) { FilePath = fileName});
-								}
-								else
-									task.SetResult(null);
-							}
-							else
-								task.SetResult(null);
-							
-						}
+                        try
+                        {
+                            var photoUrl = nsdict.ValueForKey(new NSString("UIImagePickerControllerReferenceURL")) as NSUrl;
+                            var imageName = photoUrl.LastPathComponent;
+                            var dir = NSSearchPath.GetDirectories(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User, true).FirstOrDefault();
+                            var picUrl = new NSUrl(dir, true);
+                            var localPath = picUrl.Append(imageName, false);
+                            var localPath1 = picUrl.Append(imageName, true);
+                            //task.SetResult(new MediaResult(true) { FilePath = localPath.ToString()});
+                            var photo = nsdict.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
+                            if (photo != null)
+                            {
+                                string fileName = System.IO.Path.Combine(GetPublicDirectoryPath(), imageName);
+                                NSError err = null;
+                                if (photo.AsJPEG().Save(fileName, false, out err))
+                                {
+                                    task.SetResult(new MediaResult(true) { FilePath = fileName });
+                                }
+                                else
+                                    task.SetResult(null);
+                            }
+                            else
+                                task.SetResult(null);
 
-						catch (Exception ex)
+                        }
+
+                        catch (Exception ex)
                         {
                             task.SetResult(new MediaResult(false) { FilePath = ex.Message });
                         }
@@ -157,7 +158,29 @@ namespace Xamarians.Media.iOS
                         }
                     });
                 }
-
+                else if (fileType == MediaType.Documents)
+                {
+                    var picker = new ImagePickerController();
+                    picker.OpenDoc(GetController(), (obj) =>
+                    {
+                        if (obj == null)
+                        {
+                            task.SetResult(new MediaResult(false) { Message = "Cancelled." });
+                            return;
+                        }
+                        try
+                        {
+                            var aa = obj.AbsoluteUrl;
+                            var isExist = System.IO.File.Exists(aa.AbsoluteString);
+                            task.SetResult(new MediaResult(true) { FilePath = aa.Path });
+                        }
+                        catch (Exception ex)
+                        {
+                            task.SetResult(new MediaResult(false) { FilePath = ex.Message });
+                        }
+                    });
+                }
+                                   
                 else
                 {
                     var picker = new AudioPickerController();

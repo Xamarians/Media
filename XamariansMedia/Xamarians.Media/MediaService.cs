@@ -50,7 +50,7 @@
 
     public enum MediaType
     {
-        Image, Audio, Video 
+        Image, Audio, Video ,Documents
     }
 
 }

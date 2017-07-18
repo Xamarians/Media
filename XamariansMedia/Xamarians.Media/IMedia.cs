@@ -23,8 +23,7 @@ namespace Xamarians.Media
         /// Delete file if has sufficient permission to delete.
         /// </summary>
         /// <param name="filePath">File path to delete</param>
-        Task<bool> DeleteFileAsync(string filePath);
-
+        Task<bool> DeleteFileAsync(string filePath);       
         /// <summary>
         /// Resize image to given width and height by maintaining aspect ratio.
         /// </summary>

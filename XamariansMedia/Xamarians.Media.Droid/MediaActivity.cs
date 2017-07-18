@@ -14,6 +14,7 @@ namespace Xamarians.Media.Droid
     {
         const int RequestCodeCamera = 10001;
         const int RequestCodeGallery = 10002;
+        const int RequestCodeDocument = 10003;
 
         string _filePath;
         string _activityType;
@@ -74,8 +75,8 @@ namespace Xamarians.Media.Droid
                         OpenGallery("audio/*", "Choose Audio");
                     else if (fileType == MediaType.Video.ToString())
                         OpenGallery("video/*", "Choose Video");
-                    //else if (fileType == MediaType.Document.ToString())
-                    //    OpenGallery("document/*", "Choose File");
+                    else if (fileType == MediaType.Documents.ToString())
+                        OpenDocPicker();
                     break;
             }
         }
@@ -94,6 +95,17 @@ namespace Xamarians.Media.Droid
             StartActivityForResult(Intent.CreateChooser(intent, title), RequestCodeGallery);
         }
 
+
+        public void OpenDocPicker()
+        {
+            var intent = new Intent(Intent.ActionOpenDocument);
+            intent.AddCategory(Intent.CategoryOpenable);
+            intent.SetType("*/*");
+
+            string[] mimetypes = { "text/*", "application/pdf", "application/*" };
+            intent.PutExtra(Intent.ExtraMimeTypes, mimetypes);
+            StartActivityForResult(intent, RequestCodeDocument);
+        }
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
@@ -112,6 +124,9 @@ namespace Xamarians.Media.Droid
                     MediaServiceAndroid.SetResult(new MediaResult(true) { FilePath = _filePath });
                     break;
                 case RequestCodeGallery:
+                    MediaServiceAndroid.SetResult(new MediaResult(true) { FilePath = RealPathHelper.GetPath(this, data.Data) });
+                    break;
+                case RequestCodeDocument:
                     MediaServiceAndroid.SetResult(new MediaResult(true) { FilePath = RealPathHelper.GetPath(this, data.Data) });
                     break;
             }

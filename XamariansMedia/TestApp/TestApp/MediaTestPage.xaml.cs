@@ -43,7 +43,14 @@ namespace TestApp
                 await DisplayAlert("Error", result.Message, "OK");
         }
 
-
+        private async void ChooseFile_Clicked(object sender,EventArgs e)
+        {
+            var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Documents);
+            if (result.IsSuccess)
+                await DisplayAlert("Success", result.FilePath, "OK");
+            else
+                await DisplayAlert("Error", result.Message, "OK");
+        }
         private async void ChooseVideo_Clicked(object sender, EventArgs e)
         {
             var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Video);
@@ -53,6 +60,7 @@ namespace TestApp
                 await DisplayAlert("Error", result.Message, "OK");
         }
 
+        
         private async void ChooseAudio_Clicked(object sender, EventArgs e)
         {
             var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Audio);
