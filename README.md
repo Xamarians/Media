@@ -1,5 +1,5 @@
 # Media
-Cross platform library to click pictures using camera, pick media files(photo, video and audio) from gallery
+Cross platform library to click pictures using camera, pick media files(photo, video and audio) from gallery and pick document/file from device
 
 First install package from nuget using following command -
 ## Install-Package Xamarians.Media
@@ -59,6 +59,16 @@ using Xamarians.Media;
  var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Audio);
 
 ```
+
+File Picker:-
+```c#
+using Xamarians.Media;
+
+...
+
+ var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Documents);
+
+```
  Resize Image:-
  
  ```c#
@@ -92,5 +102,6 @@ NSMicrophoneUsageDescription
 TCCServiceMediaLibrary
 NSAppleMusicUsageDescription
 ```
-	
+In ios, for using file picker, you must create an App ID and provisioning profile. Then enable the iCloud service you want to use in following App ID.
+After that you need to add Entitlement keys:- iCloud document storage, CloudKit in Entitlements.pList
 
