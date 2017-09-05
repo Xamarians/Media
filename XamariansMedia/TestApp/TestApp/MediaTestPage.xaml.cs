@@ -25,8 +25,8 @@ namespace TestApp
             var result = await MediaService.Instance.TakePhotoAsync(new CameraOption()
             {
                 FilePath = filePath,
-                MaxWidth = 300,
-                MaxHeight = 300
+                MaxWidth = 200,
+                MaxHeight = 200
             });
             if (result.IsSuccess)
                 image.Source = result.FilePath;
@@ -74,7 +74,7 @@ namespace TestApp
         {
             var result = await MediaService.Instance.OpenMediaPickerAsync(MediaType.Image);
             string resizeFilePath = GenerateFilePath();
-            var success = await MediaService.Instance.ResizeImageAsync(result.FilePath, resizeFilePath, 250, 250);
+            var success = await MediaService.Instance.ResizeImageAsync(result.FilePath, resizeFilePath, 100, 100);
             if (success)
             {
                 image.Source = resizeFilePath;

@@ -59,7 +59,7 @@ namespace Xamarians.Media.iOS
                     }
                     var photo = nsDict.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
                     if (option.MaxHeight > 0 && option.MaxWidth > 0)
-                        photo.Scale(new CoreGraphics.CGSize(option.MaxWidth, option.MaxHeight));
+                        photo = photo.Scale(new CoreGraphics.CGSize(option.MaxWidth, option.MaxHeight));
 
                     try
                     {
@@ -219,7 +219,7 @@ namespace Xamarians.Media.iOS
                 try
                 {
 					var photo = UIImage.FromFile(sourceFilePath);
-					photo.Scale(new CoreGraphics.CGSize(reqWidth, reqHeight));
+					photo = photo.Scale(new CoreGraphics.CGSize(reqWidth, reqHeight));
 					return photo.AsJPEG().Save(outputFilePath, sourceFilePath == outputFilePath);
                 }
                 catch

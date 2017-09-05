@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestApp.MediaTestPage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-			<Image x:Name="image" Source="Default.png" HeightRequest="200" WidthRequest="200"/>
+			<Image x:Name="image" Source="Default.png" VerticalOptions="Start" HorizontalOptions="Center"/>
             <Button Text="Take Photo" Clicked="TakePhoto_Clicked"></Button>
             <Button Text="Choose Image" Clicked="ChooseImage_Clicked"></Button>
             <Button Text="Choose Video" Clicked="ChooseVideo_Clicked"></Button>
             <Button Text="Choose Audio" Clicked="ChooseAudio_Clicked"></Button>
             <Button Text="Choose File" Clicked="ChooseFile_Clicked"></Button>
-            <Button Text="Choose and Resize Image" Clicked="ResizeImage_Clicked" ></Button>
+            <Button Text="Choose and Resize Image" Clicked="ResizeImage_Clicked"></Button>
         </StackLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>
